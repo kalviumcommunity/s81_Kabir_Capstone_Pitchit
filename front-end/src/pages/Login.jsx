@@ -40,11 +40,9 @@ const Login = () => {
       const data = await response.json();
 
       if (response.ok) {
-      
         console.log("Login successful:", data.message);
-        navigate("/dashboard"); 
+        navigate("/profile"); // Redirect to the profile page
       } else {
-     
         console.error("Login failed:", data.message || data.error);
         alert(data.message || "Login failed. Please try again.");
       }
@@ -97,3 +95,4 @@ const Login = () => {
 };
 
 export default Login;
+
