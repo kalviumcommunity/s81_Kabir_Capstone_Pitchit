@@ -2,20 +2,28 @@
 
 import React from "react";
 
-
 const Home = () => {
   return (
-    
-      <div className="p-8">
-        <h2 className="text-3xl font-semibold mb-4">Welcome to the Home Page</h2>
-        <p className="text-gray-600 mb-4">
-          This is where you can introduce your website, your mission, and what you offer. You can explain to the users what PitchIt is all about and how it can benefit them.
-        </p>
-        <p className="text-gray-600">
-          You can also add more content here, such as an introduction to your platform, features, upcoming events, or anything else you'd like to highlight. The possibilities are endless!
-        </p>
+    <div className="p-8 bg-blue-600 text-white">
+      {/* Description */}
+      <p className="text-5xl font-bold mb-6 text-center">
+        <span className="font-semibold">Connect Great Ideas with Great Investors</span>
+        <br />
+        PitchIt is where innovators present their startup ideas to investors, sponsors, and partners looking for the next big opportunity.
+      </p>
+
+ 
+
+      {/* Buttons */}
+      <div className="flex justify-center gap-4">
+        <button className="px-6 py-3 bg-white text-blue-600 font-semibold rounded-lg shadow-lg hover:bg-gray-100 transition duration-300">
+          Get Started
+        </button>
+        <button className="px-6 py-3 bg-white text-blue-600 font-semibold rounded-lg shadow-lg hover:bg-gray-100 transition duration-300">
+          Explore
+        </button>
       </div>
-    
+    </div>
   );
 };
 
