@@ -1,13 +1,15 @@
 
 
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom"; 
 
 const Login = () => {
   const [formData, setFormData] = useState({
-    usernameOrEmail: "",
-    password: "",
+    usernameOrEmail: "", 
+    password: "", 
   });
+
+  const navigate = useNavigate(); 
 
   const handleChange = (e) => {
     setFormData({
@@ -16,27 +18,48 @@ const Login = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Your login logic here (API call, etc.)
+    const isEmail = formData.usernameOrEmail.includes("@");
 
-    // After login, reset form
-    setFormData({
-      usernameOrEmail: "",
-      password: "",
-    });
+    try {
+      // Sending login request to the backend API
+      const response = await fetch("http://localhost:5000/api/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: isEmail ? formData.usernameOrEmail : "", 
+          username: !isEmail ? formData.usernameOrEmail : "", 
+          password: formData.password,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+      
+        console.log("Login successful:", data.message);
+        navigate("/dashboard"); 
+      } else {
+     
+        console.error("Login failed:", data.message || data.error);
+        alert(data.message || "Login failed. Please try again.");
+      }
+    } catch (err) {
+      console.error("Error during login:", err);
+      alert("An error occurred during login.");
+    }
   };
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-white text-black p-8">
-      {/* Logo */}
       <h1 className="text-4xl font-bold mb-8 text-blue-600">PitchIt</h1>
-
-      {/* Login Card */}
       <div className="bg-white text-black rounded-lg p-8 shadow-lg w-full max-w-md border border-gray-300">
         <h2 className="text-2xl font-bold mb-6 text-center">Login to your Account</h2>
-        <form onSubmit={handleSubmit} className="flex flex-col gap-4" autoComplete="off">
+        <form onSubmit={handleSubmit} className="flex flex-col gap-4">
           <input
             type="text"
             name="usernameOrEmail"
@@ -44,7 +67,7 @@ const Login = () => {
             value={formData.usernameOrEmail}
             onChange={handleChange}
             className="p-3 rounded-lg border"
-            autoComplete="off"
+            required
           />
           <input
             type="password"
@@ -53,19 +76,20 @@ const Login = () => {
             value={formData.password}
             onChange={handleChange}
             className="p-3 rounded-lg border"
-            autoComplete="new-password"
+            required
           />
-
-          <button type="submit" className="mt-4 p-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition">
+          <button
+            type="submit"
+            className="mt-4 p-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition"
+          >
             Login
           </button>
         </form>
-
         <p className="mt-4 text-center text-gray-600">
           Don't have an account?{" "}
-          <Link to="/signup" className="text-blue-600 hover:underline font-semibold">
+          <a href="/signup" className="text-blue-600 hover:underline font-semibold">
             Sign Up
-          </Link>
+          </a>
         </p>
       </div>
     </div>
