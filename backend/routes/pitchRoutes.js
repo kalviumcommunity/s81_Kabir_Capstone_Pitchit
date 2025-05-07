@@ -22,6 +22,6 @@ const upload = multer({ storage });
 router.post('/create', upload.fields([{ name: 'image', maxCount: 1 }, { name: 'pptFile', maxCount: 1 }]), createPitch);
 
 
-router.get('/', getAllPitches);
+// router.get('/', getAllPitches);
 
 module.exports = router;
