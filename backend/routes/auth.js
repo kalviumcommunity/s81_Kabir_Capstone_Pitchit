@@ -6,7 +6,36 @@ const User = require('../models/User');
 const router = express.Router();
 
 // SIGNUP Route
+router.post("/signup", async (req, res) => {
+  try {
+    const { username, displayName, email, password, role } = req.body;
 
+   
+    if (!username || !displayName || !email || !password || !role) {
+      return res.status(400).json({ message: "All fields are required" });
+    }
+
+  
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(password, salt);
+
+   
+    const newUser = new User({
+      username,
+      displayName,
+      email,
+      password: hashedPassword,
+      role,
+    });
+
+   
+    await newUser.save();
+    res.status(201).json({ message: "User created successfully" });
+  } catch (err) {
+    console.error("Error during signup:", err);
+    res.status(500).json({ error: err.message });
+  }
+});
 
 // LOGIN Route
 router.post("/login", async (req, res) => {
