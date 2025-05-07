@@ -1,18 +1,16 @@
 
 
-
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import axios from 'axios';
+import React, { useState, useEffect } from 'react';
 
 const Home = () => {
   const [pitches, setPitches] = useState([]);
 
-  // Fetch the pitches when the component mounts
   useEffect(() => {
     const fetchPitches = async () => {
       try {
         const res = await axios.get("http://localhost:5000/api/pitches");
-        setPitches(res.data); // Store the fetched pitches in state
+        setPitches(res.data);
       } catch (error) {
         console.error("Failed to fetch pitches", error);
       }
@@ -23,9 +21,7 @@ const Home = () => {
 
   return (
     <div className="min-h-screen">
-      {/* Blue Section */}
       <div className="p-8 bg-blue-600 text-white">
-        {/* Description */}
         <p className="text-5xl font-bold mb-6 text-center">
           <span className="font-semibold">
             Connect Great Ideas with Great Investors
@@ -34,8 +30,6 @@ const Home = () => {
           PitchIt is where innovators present their startup ideas to investors,
           sponsors, and partners looking for the next big opportunity.
         </p>
-
-        {/* Buttons */}
         <div className="flex justify-center gap-4 mb-12">
           <button className="px-6 py-3 bg-white text-blue-600 font-semibold rounded-lg shadow-lg hover:bg-gray-100 transition duration-300">
             Get Started
@@ -46,7 +40,6 @@ const Home = () => {
         </div>
       </div>
 
-      {/* Below the Blue Box: Pitch Data */}
       <div className="mt-12 p-8 bg-gray-100">
         <h2 className="text-2xl font-bold mb-4">Latest Pitches</h2>
         {pitches.length === 0 ? (
@@ -59,11 +52,17 @@ const Home = () => {
                 <p className="text-sm text-gray-600">{pitch.category}</p>
                 <p className="mt-2">{pitch.description}</p>
                 {pitch.image && (
+                  // <img
+                  //   src={`http://localhost:5000/uploads/${pitch.image}`}
+                  //   alt={pitch.name}
+                  //   className="mt-2 rounded"
+                  // />
                   <img
-                    src={`http://localhost:5000/${pitch.image}`} // Make sure this is the correct path
-                    alt={pitch.name}
-                    className="mt-2 rounded"
-                  />
+                       src={`http://localhost:5000/${pitch.image}`} 
+                       alt={pitch.name}
+                       className="mt-2 rounded"
+                   />
+
                 )}
                 <p className="mt-2">
                   <strong>Funds Required:</strong> ₹{pitch.fundsRequired}
@@ -77,10 +76,9 @@ const Home = () => {
         )}
       </div>
 
-      {/* Footer Section */}
       <footer className="bg-blue-800 text-white text-center py-4 mt-12">
         <p>&copy; {new Date().getFullYear()} PitchIt. All Rights Reserved.</p>
-        <p>Made  by Kabir Dharshaan</p>
+        <p>Made by Kabir Dharshaan</p>
       </footer>
     </div>
   );

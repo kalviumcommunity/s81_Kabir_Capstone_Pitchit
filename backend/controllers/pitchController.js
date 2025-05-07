@@ -1,8 +1,6 @@
 
 
-
 const Pitch = require('../models/Pitch'); 
-
 
 const createPitch = async (req, res) => {
   try {
@@ -15,7 +13,7 @@ const createPitch = async (req, res) => {
       name,
       category,
       description,
-      image,
+      image, 
       videoLink,
       pdfLink,
       fundsRequired,
@@ -30,7 +28,6 @@ const createPitch = async (req, res) => {
     res.status(500).json({ message: 'Internal server error' });
   }
 };
-
 
 const getAllPitches = async (req, res) => {
   try {
