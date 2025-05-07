@@ -43,7 +43,7 @@ To **solve real-world problems** by helping **good ideas reach the right audienc
 | 9   | Add **Categories and Search Function**     |
 | 10  | Final Touches and **Mobile Responsiveness**|
 
----
+
 
 ## 🤝 Community Focus
 
@@ -53,5 +53,5 @@ This platform is purely for **connection and discovery** — not for financial t
 - Help interested individuals **connect or mentor**
 - Grow a **supportive ecosystem** of dreamers and doers
 
----
+
 
