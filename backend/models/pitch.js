@@ -14,4 +14,4 @@ const pitchSchema = new mongoose.Schema({
 
 const Pitch = mongoose.model('Pitch', pitchSchema);
 
-module.exports = Pitch;
+module.exports =Pitch;
