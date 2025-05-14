@@ -24,6 +24,10 @@ router.post('/create', upload.fields([{ name: 'image', maxCount: 1 }, { name: 'p
 
 router.get('/', getAllPitches);
 
+
 router.put('/:id',putAllPitches);
 
 module.exports = router;
+
+module.exports = router;
+
