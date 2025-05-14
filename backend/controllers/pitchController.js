@@ -1,6 +1,8 @@
 
 
-const Pitch = require('../models/Pitch'); 
+
+
+const Pitch = require('../models/pitch'); 
 
 const createPitch = async (req, res) => {
   try {
@@ -39,4 +41,43 @@ const getAllPitches = async (req, res) => {
   }
 };
 
-module.exports = { createPitch, getAllPitches };
+const putAllPitches = async (req, res) => {
+  try {
+    const { name, category, description, videoLink, pdfLink, fundsRequired, estimatedProfit } = req.body;
+
+  
+    const image = req.files && req.files.image ? req.files.image[0].path : undefined;
+    const pptFile = req.files && req.files.pptFile ? req.files.pptFile[0].path : undefined;
+
+ 
+    const updateData = {
+      name,
+      category,
+      description,
+      videoLink,
+      pdfLink,
+      fundsRequired,
+      estimatedProfit,
+    };
+
+    if (image !== undefined) updateData.image = image;
+    if (pptFile !== undefined) updateData.pptFile = pptFile;
+
+    const updatedPitch = await Pitch.findByIdAndUpdate(
+      req.params.id,
+      updateData,
+      { new: true }
+    );
+
+    if (!updatedPitch) {
+      return res.status(404).json({ message: 'Pitch not found' });
+    }
+
+    res.status(200).json({ message: 'Pitch updated successfully', pitch: updatedPitch });
+  } catch (error) {
+    console.error('Error updating pitch:', error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+};
+
+module.exports = { createPitch, getAllPitches, putAllPitches };

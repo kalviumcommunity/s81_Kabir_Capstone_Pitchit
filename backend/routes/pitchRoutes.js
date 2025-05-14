@@ -3,7 +3,7 @@
 
 const express = require('express');
 const multer = require('multer');
-const { createPitch, getAllPitches } = require('../controllers/pitchController');
+const { createPitch, getAllPitches ,putAllPitches} = require('../controllers/pitchController');
 const router = express.Router();
 
 
@@ -23,5 +23,7 @@ router.post('/create', upload.fields([{ name: 'image', maxCount: 1 }, { name: 'p
 
 
 router.get('/', getAllPitches);
+
+router.put('/:id',putAllPitches);
 
 module.exports = router;
