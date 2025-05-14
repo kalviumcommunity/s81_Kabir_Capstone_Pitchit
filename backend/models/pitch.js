@@ -1,5 +1,3 @@
-
-
 const mongoose = require('mongoose');
 
 const pitchSchema = new mongoose.Schema({
@@ -16,4 +14,4 @@ const pitchSchema = new mongoose.Schema({
 
 const Pitch = mongoose.model('Pitch', pitchSchema);
 
-module.exports = Pitch;
+module.exports = Pitch;
