@@ -17,15 +17,15 @@ const Community = () => {
 
   return (
     <div className="p-8">
-      {/* Heading */}
+    
       <h2 className="text-3xl font-semibold mb-4">Communities</h2>
       <p className="text-gray-600 mb-8">
         Join communities of like-minded innovators and investors to grow your ideas and network.
       </p>
 
-      {/* Search and Dropdown */}
+  
       <div className="flex space-x-4 mb-8">
-        {/* Search Box */}
+       
         <input
           type="text"
           value={searchQuery}
@@ -34,7 +34,6 @@ const Community = () => {
           className="px-4 py-2 border rounded-md w-1/2 focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
 
-        {/* Dropdown */}
         <select
           value={selectedCategory}
           onChange={(e) => setSelectedCategory(e.target.value)}
@@ -48,9 +47,9 @@ const Community = () => {
         </select>
       </div>
 
-      {/* List of Communities (Placeholder) */}
+   
       <div>
-        {/* Here you can add dynamic community data or use the search functionality */}
+    
         <p className="text-gray-600">Displaying communities based on search and selected category.</p>
       </div>
     </div>
